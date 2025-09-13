@@ -18,13 +18,13 @@ app.post("/print", upload.single("file"), (req, res) => {
   if (!req.file) {
     return res.status(400).send("No file uploaded.");
   }
-
+  const PrinterCUPSName = WebPrinter_1;
   const filePath = req.file.path;
   const quality = req.body.quality || "draft";
   const duplex = req.body.duplex ? "two-sided-long-edge" : "one-sided";
 
   // Build lp command
-  const cmd = `lp -o print-quality=${quality} -o sides=${duplex} "${filePath}"`;
+  const cmd = `lp -d ${WebPrinter_1} -o print-quality=${quality} -o sides=${duplex} "${filePath}"`;
 
   console.log("Running:", cmd);
 
