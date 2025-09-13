@@ -1,0 +1,17 @@
+[Unit]
+Description=WebCUPS UI Daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/node /opt/webcups/server.js
+WorkingDirectory=/opt/webcups
+Restart=always
+RestartSec=5
+User=printsvr
+Environment=NODE_ENV=production
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=print-server
+
+[Install]
+WantedBy=multi-user.target
