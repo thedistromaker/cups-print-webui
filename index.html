@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * {
+    box-sizing: border-box; /* fixes width/padding overflow */
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(90deg, orange, lightblue);
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .login-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem 1.5rem; /* add horizontal padding */
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    width: clamp(280px, 90%, 360px); /* responsive width */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+  }
+
+  .login-container h2 {
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 1rem 0;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .input-group {
+    position: relative;
+  }
+
+  .input-group label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    color: #444;
+    text-align: left;
+  }
+
+  .input-group input {
+    width: 100%;
+    padding: 0.75rem 2.5rem 0.75rem 0.75rem; /* space for eye button */
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .input-group input:focus {
+    border-color: #0096c7;
+    box-shadow: 0 0 6px rgba(0,150,199,0.3);
+  }
+
+  .btn {
+    padding: 0.85rem;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #ff7e5f, #0077b6);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+    margin-top: 1rem;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: none;
+  }
+</style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>WebCUPS Login</h2>
+    <form id="loginForm" class="form-group">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" required>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required>
+      </div>
+
+      <button type="submit" class="btn">Login</button>
+      <div class="error-message" id="errorMessage">Incorrect username or password</div>
+    </form>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const pwd = document.getElementById("password");
+      pwd.type = pwd.type === "password" ? "text" : "password";
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+
+      const correctUsername = "admin";
+      const correctPassword = "admin";
+
+      if(username === correctUsername && password === correctPassword) {
+        window.location.href = "home.html";
+      } else {
+        const error = document.getElementById("errorMessage");
+        error.style.display = "block";
+        setTimeout(() => { error.style.display = "none"; }, 3000);
+      }
+    });
+  </script>
+</body>
+</html>
