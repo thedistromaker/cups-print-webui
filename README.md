@@ -8,4 +8,4 @@ Move ```webcups-ui.service``` to ```/etc/systemd/system/```.<br>
 Run ```sudo systemctl start webcups-ui``` to start it for this boot only<br>
 Or run ```sudo systemctl enable --now webcups-ui``` to run it on boot every time.<br>
 # Set up CUPS
-If CUPS is already installed, please name your printer WebPrinter-1 for compatibility with the WebUI. Or edit public/home.html to your printer's job, edit variable ```PrinterCUPSName``` to your CUPS printer name.
+If CUPS is already installed, please name your printer WebPrinter_1 for compatibility with the WebUI. Or edit public/home.html to your printer's job, edit variable ```PrinterCUPSName``` to your CUPS printer name.
